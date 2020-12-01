@@ -2,6 +2,19 @@
 #include "Calculator.h"
 
 
+TEST(CalcTest, NegArgRetManyError) {
+	Calculator calc;
+	int expected = -2;
+	int expected_errors = 2;
+	int actual = calc.Add("-8,-6");
+	CALCULATOR_ERRORS* perrors = calc.GetLastErrors();
+	ASSERT_NE((void*)perrors,(void*)NULL);
+	ASSERT_EQ(expected, actual);
+	ASSERT_EQ(perrors->num_errors, expected_errors);
+	ASSERT_EQ(perrors->errors[0], expected);
+	ASSERT_EQ(perrors->errors[1], expected);
+
+}
 TEST(CalcTest, OneArgRetError) {
 	Calculator calc;
 	int expected = -1;
@@ -34,8 +47,6 @@ TEST(CalcTest, EmptyStringEQZero) {
 	int actual = calc.Add(""); 
 	ASSERT_EQ(expected, actual); 
 }
-
-
 
 TEST(CalcTest, BigArgRetError) {
 	Calculator calc;

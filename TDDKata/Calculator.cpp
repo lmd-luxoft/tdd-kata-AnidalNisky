@@ -63,3 +63,8 @@ int Calculator::Add(char* expression)
 
     return res; 
 }
+
+CALCULATOR_ERRORS* Calculator::GetLastErrors(void)
+{
+    return nullptr;
+}
