@@ -1,5 +1,20 @@
 #include "pch.h"
 #include "Calculator.h"
+
+
+TEST(CalcTest, FormatWithDelimRetOK) {
+	Calculator calc;
+	int expected = 9;
+	int actual = calc.Add("//:\n5\n3,1");
+	ASSERT_EQ(expected, actual);
+}
+
+TEST(CalcTest, FormatWithBadDelimRetBad) {
+	Calculator calc;
+	int expected = -4;
+	int actual = calc.Add("/:\n5\n3,1");
+	ASSERT_EQ(expected, actual);
+}
 TEST(CalcTest, EmptyStringEQZero) { 
 	Calculator calc; 
 	int expected = 0; 
@@ -77,3 +92,4 @@ TEST(CalcTest, FormatWithCRRetOK) {
 	int actual = calc.Add("5\n3,1");
 	ASSERT_EQ(expected, actual);
 }
+
