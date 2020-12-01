@@ -35,9 +35,9 @@ TEST(CalcTest, ThreeArgRetOK) {
 	ASSERT_EQ(expected, actual); 
 }
 
-TEST(CalcTest, FourArgRetErr) {
+TEST(CalcTest, FourArgRetOK) {
 	Calculator calc;
-	int expected = -3;
+	int expected = 17;
 	int actual = calc.Add("5,3,1,8");
 	ASSERT_EQ(expected, actual);
 }
