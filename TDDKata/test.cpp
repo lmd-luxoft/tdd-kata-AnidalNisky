@@ -49,3 +49,10 @@ TEST(CalcTest, BAdFormatRetErr) {
 	int actual = calc.Add("5:3 1");
 	ASSERT_EQ(expected, actual);
 }
+
+TEST(CalcTest, FormatWithCRRetOK) {
+	Calculator calc;
+	int expected = 9;
+	int actual = calc.Add("5/n3,1");
+	ASSERT_EQ(expected, actual);
+}
