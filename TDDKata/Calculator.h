@@ -11,6 +11,7 @@ class Calculator
 {
 	char arg_mass[MAX_NUM_OF_ARGUMENTS][MAX_SIZE_OF_ARGUMENTS+1];
 	int num_arg;
+	char delim;
 public:
 	/// <summary>
 	/// Sum of elements expression

@@ -17,6 +17,18 @@ int Calculator::Add(char* expression)
     int res = 0;
     if (!pos) return 0; //пустая строка возвращает 0
     if (!*pos) return 0; //пустая строка возвращает 0
+    //В начале могут быть команды задания делимитера в формате //_/n
+    if (strlen(pos) < 3) return -1;
+    if ((*pos == '/') && (*(pos + 1) == '/')) { //Вероятно делимитер
+        if ((!isdigit(*(pos + 2))) && (*(pos + 3) == '\n')) { //формат верен
+            delim = *(pos + 2);
+            pos += 4;
+        }
+        else return -4;
+
+    }
+
+
     while (*pos) {
         if ((expression - pos) > MAX_SIZE_OF_INPUT_STRING) return -1;
         if (*pos == '-') return -2;

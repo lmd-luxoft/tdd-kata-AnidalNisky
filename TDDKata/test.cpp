@@ -2,6 +2,12 @@
 #include "Calculator.h"
 
 
+TEST(CalcTest, OneArgRetError) {
+	Calculator calc;
+	int expected = -1;
+	int actual = calc.Add("5");
+	ASSERT_EQ(expected, actual);
+}
 TEST(CalcTest, FormatWithDelimRetOK) {
 	Calculator calc;
 	int expected = 9;
@@ -11,8 +17,15 @@ TEST(CalcTest, FormatWithDelimRetOK) {
 
 TEST(CalcTest, FormatWithBadDelimRetBad) {
 	Calculator calc;
-	int expected = -4;
+	int expected = -2;
 	int actual = calc.Add("/:\n5\n3,1");
+	ASSERT_EQ(expected, actual);
+}
+
+TEST(CalcTest, FormatWithBad2DelimRetBad) {
+	Calculator calc;
+	int expected = -4;
+	int actual = calc.Add("//7\n5\n3,1");
 	ASSERT_EQ(expected, actual);
 }
 TEST(CalcTest, EmptyStringEQZero) { 
@@ -22,17 +35,12 @@ TEST(CalcTest, EmptyStringEQZero) {
 	ASSERT_EQ(expected, actual); 
 }
 
-TEST(CalcTest, OneArgRetError) {
-	Calculator calc;
-	int expected = -1;
-	int actual = calc.Add("5");
-	ASSERT_EQ(expected, actual);
-}
+
 
 TEST(CalcTest, BigArgRetError) {
 	Calculator calc;
 	int expected = -2;
-	int actual = calc.Add("55");
+	int actual = calc.Add("55,5");
 	ASSERT_EQ(expected, actual);
 }
 
