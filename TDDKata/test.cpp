@@ -56,3 +56,17 @@ TEST(CalcTest, BAdFormatRetErr) {
 	int actual = calc.Add("5:3 1");
 	ASSERT_EQ(expected, actual);
 }
+
+TEST(CalcTest, BigFormatRetErr) {
+	Calculator calc;
+	int expected = -3;
+	int actual = calc.Add("1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1");
+	ASSERT_EQ(expected, actual);
+}
+
+TEST(CalcTest, NotVeryBigFormatRetOK) {
+	Calculator calc;
+	int expected = 16;
+	int actual = calc.Add("1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1");
+	ASSERT_EQ(expected, actual);
+}
