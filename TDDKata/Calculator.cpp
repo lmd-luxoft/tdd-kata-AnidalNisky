@@ -29,7 +29,7 @@ int Calculator::Add(char* expression)
             pos++;
             continue;
         }
-        if (*pos == ',') {
+        if ((*pos == ',')||(*pos=='\n')) {
             if (number_detected) {
                 number_detected = 0;
                 pos++;
