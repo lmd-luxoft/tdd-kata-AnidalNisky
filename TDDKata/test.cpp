@@ -2,16 +2,49 @@
 #include "Calculator.h"
 
 
-TEST(CalcTest, NegArgRetManyError) {
+TEST(CalcTest, NegArgRetManyError1) {
+	Calculator calc;
+	int expected = -2;
+	int expected_errors = 2;
+	int actual = calc.Add("-8,-6");
+	ASSERT_EQ(expected, actual);
+}
+
+TEST(CalcTest, NegArgRetManyError2) {
 	Calculator calc;
 	int expected = -2;
 	int expected_errors = 2;
 	int actual = calc.Add("-8,-6");
 	CALCULATOR_ERRORS* perrors = calc.GetLastErrors();
-	ASSERT_NE((void*)perrors,(void*)NULL);
-	ASSERT_EQ(expected, actual);
+	ASSERT_NE((void*)perrors, (void*)NULL);
+
+}
+TEST(CalcTest, NegArgRetManyError3) {
+	Calculator calc;
+	int expected = -2;
+	int expected_errors = 2;
+	int actual = calc.Add("-8,-6");
+	CALCULATOR_ERRORS* perrors = calc.GetLastErrors();
 	ASSERT_EQ(perrors->num_errors, expected_errors);
+
+}
+
+TEST(CalcTest, NegArgRetManyError4) {
+	Calculator calc;
+	int expected = -2;
+	int expected_errors = 2;
+	int actual = calc.Add("-8,-6");
+	CALCULATOR_ERRORS* perrors = calc.GetLastErrors();
 	ASSERT_EQ(perrors->errors[0], expected);
+
+}
+
+TEST(CalcTest, NegArgRetManyError5) {
+	Calculator calc;
+	int expected = -2;
+	int expected_errors = 2;
+	int actual = calc.Add("-8,-6");
+	CALCULATOR_ERRORS* perrors = calc.GetLastErrors();
 	ASSERT_EQ(perrors->errors[1], expected);
 
 }
