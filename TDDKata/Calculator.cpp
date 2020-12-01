@@ -8,5 +8,5 @@ int Calculator::Add(std::string expression)
 
 int Calculator::Add(char* expression)
 {
-    throw 0;
+    return -4; //Пришлось таки менять, т.к. мы договорились что эксепшенов не поддерживается!
 }
