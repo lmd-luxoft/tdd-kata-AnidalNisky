@@ -14,10 +14,17 @@ TEST(CalcTest, OneArgRetError) {
 	ASSERT_EQ(expected, actual);
 }
 
+TEST(CalcTest, BigArgRetError) {
+	Calculator calc;
+	int expected = -2;
+	int actual = calc.Add("55");
+	ASSERT_EQ(expected, actual);
+}
+
 TEST(CalcTest, TwoArgRetOK) {
 	Calculator calc;
 	int expected = 8;
-	int actual = calc.Add("5,3");
+	int actual = calc.Add("5,3"); 
 	ASSERT_EQ(expected, actual);
 }
 
@@ -25,12 +32,12 @@ TEST(CalcTest, ThreeArgRetOK) {
 	Calculator calc;
 	int expected = 9;
 	int actual = calc.Add("5,3,1");
-	ASSERT_EQ(expected, actual);
+	ASSERT_EQ(expected, actual); 
 }
 
-TEST(CalcTest, FourArgRetErr) {
+TEST(CalcTest, FourArgRetOK) {
 	Calculator calc;
-	int expected = -3;
+	int expected = 17;
 	int actual = calc.Add("5,3,1,8");
 	ASSERT_EQ(expected, actual);
 }
@@ -47,5 +54,19 @@ TEST(CalcTest, BAdFormatRetErr) {
 	Calculator calc;
 	int expected = -2;
 	int actual = calc.Add("5:3 1");
+	ASSERT_EQ(expected, actual);
+}
+
+TEST(CalcTest, BigFormatRetErr) {
+	Calculator calc;
+	int expected = -3;
+	int actual = calc.Add("1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1");
+	ASSERT_EQ(expected, actual);
+}
+
+TEST(CalcTest, NotVeryBigFormatRetOK) {
+	Calculator calc;
+	int expected = 16;
+	int actual = calc.Add("1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1");
 	ASSERT_EQ(expected, actual);
 }
