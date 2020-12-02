@@ -24,26 +24,20 @@ public:
 	/// </summary>
 	/// <param name="expression">Input expression</param>
 	/// <returns>Value of sum expression of expression</returns>
-	int Add(std::string expression);
-	/// <summary>
-	/// Sum of elements expression
-	/// </summary>
-	/// <param name="expression">Input expression</param>
-	/// <returns>Value of sum expression of expression</returns>
-	int Add(char* expression);
+	int Add(const char* expression);
 	CALCULATOR_ERRORS *GetLastErrors(void);
 	/// <summary>
 	/// Return pos if correct
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns></returns>
-	int CheckMinLen(char*);
+	int CheckMinLen(const char*);
 	/// <summary>
 	/// return size of delim or neg error code
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns></returns>
-	int ScanDelim(char*);
+	int ScanDelim(const char*);
 	/// <summary>
 	/// Add scaned arg
 	/// </summary>

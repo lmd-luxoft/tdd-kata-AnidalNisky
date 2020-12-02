@@ -2,19 +2,16 @@
 #include "Calculator.h"
 #include <stdio.h>
 
-int Calculator::Add(std::string expression)
-{
-    return -4; //реализации не будет
-}
 
-int Calculator::Add(char* expression)
+
+int Calculator::Add(const char* expression)
 {
     num_arg=0;
     memset(arg_mass, 0x00, sizeof(arg_mass));
     memset(&errors, 0x00, sizeof(errors));
 
     char cur_symb = 0x00;
-    char* pos = expression;
+    const char* pos = expression;
     unsigned long number_detected = 0;
     int res = 0;
 
@@ -75,7 +72,7 @@ CALCULATOR_ERRORS* Calculator::GetLastErrors(void)
     return &errors;
 }
 
-int Calculator::CheckMinLen(char* pos)
+int Calculator::CheckMinLen(const char* pos)
 {
     if (!pos) return 0; //пуста€ строка возвращает 0
     if (!*pos) return 0; //пуста€ строка возвращает 0
@@ -87,7 +84,7 @@ int Calculator::CheckMinLen(char* pos)
     return 1;
 }
 
-int Calculator::ScanDelim(char* pos)
+int Calculator::ScanDelim(const char* pos)
 {
     int res=0;
     if ((*pos == '/') && (*(pos + 1) == '/')) { //¬еро€тно делимитер

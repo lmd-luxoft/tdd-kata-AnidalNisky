@@ -1,7 +1,7 @@
 #pragma once
 #include "Calculator.h"
 
-class TextFixture : public ::testing::Test
+class TextFixture : public ::testing::Test 
 {
 protected:
 	Calculator* calc;

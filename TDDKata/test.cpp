@@ -1,5 +1,20 @@
 #include "pch.h"
 #include "TextFixture.h"
+#include "TestFixtureWithParam.h"
+
+
+TEST_P(TestFixtureWithParam, Sample)
+{
+	//Arrange
+	const char* op = GetParam().argument;
+	int expected = GetParam().expected;
+	//Act
+	int actual = calc->Add(op);
+	//Assert
+	ASSERT_EQ(expected, actual);
+
+
+}
 
 
 TEST_F(TextFixture, NegArgRetManyError1) {
