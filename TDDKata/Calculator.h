@@ -32,5 +32,24 @@ public:
 	/// <returns>Value of sum expression of expression</returns>
 	int Add(char* expression);
 	CALCULATOR_ERRORS *GetLastErrors(void);
+	/// <summary>
+	/// Return pos if correct
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns></returns>
+	int CheckMinLen(char*);
+	/// <summary>
+	/// return size of delim or neg error code
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns></returns>
+	int ScanDelim(char*);
+	/// <summary>
+	/// Add scaned arg
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns></returns>
+	int CalculateAdd(int);
+
 };
 

@@ -17,24 +17,14 @@ int Calculator::Add(char* expression)
     char* pos = expression;
     unsigned long number_detected = 0;
     int res = 0;
-    if (!pos) return 0; //пустая строка возвращает 0
-    if (!*pos) return 0; //пустая строка возвращает 0
-    //В начале могут быть команды задания делимитера в формате //_/n
-    if (strlen(pos) < 3) { 
-        errors.errors[errors.num_errors++] = -1;
-        return -1; 
-     }
-    if ((*pos == '/') && (*(pos + 1) == '/')) { //Вероятно делимитер
-        if ((!isdigit(*(pos + 2))) && (*(pos + 3) == '\n')) { //формат верен
-            delim = *(pos + 2);
-            pos += 4;
-        }
-        else {
-            errors.errors[errors.num_errors++] = -4;
-            return -4;
-        }
 
-    }
+    res = CheckMinLen(pos);
+    if (res <= 0) return res;
+
+    res = ScanDelim(pos);
+    if (res < 0) return res;
+    else pos += res;
+
 
 
     while (*pos) {
@@ -73,18 +63,9 @@ int Calculator::Add(char* expression)
         errors.errors[errors.num_errors++] = -1;
         return -1;
     }
+    res = CalculateAdd(num_arg);
 
-
-    for (long i = 0; i < num_arg; i++) {
-        int arg = 0;
-        if (sscanf_s(arg_mass[i], "%d", &arg) == 1) {
-            res += arg;
-        }
-        else {
-            errors.errors[errors.num_errors++] = -2;
-        }
-        
-    }
+    
     if (errors.num_errors > 0) return  errors.errors[0];
     return res; 
 }
@@ -92,4 +73,50 @@ int Calculator::Add(char* expression)
 CALCULATOR_ERRORS* Calculator::GetLastErrors(void)
 {
     return &errors;
+}
+
+int Calculator::CheckMinLen(char* pos)
+{
+    if (!pos) return 0; //пустая строка возвращает 0
+    if (!*pos) return 0; //пустая строка возвращает 0
+    //В начале могут быть команды задания делимитера в формате //_/n
+    if (strlen(pos) < 3) {
+        errors.errors[errors.num_errors++] = -1;
+        return -1;
+    }
+    return 1;
+}
+
+int Calculator::ScanDelim(char* pos)
+{
+    int res=0;
+    if ((*pos == '/') && (*(pos + 1) == '/')) { //Вероятно делимитер
+        if ((!isdigit(*(pos + 2))) && (*(pos + 3) == '\n')) { //формат верен
+            delim = *(pos + 2);
+            pos += 4;
+            res += 4;
+        }
+        else {
+            errors.errors[errors.num_errors++] = -4;
+            res= -4;
+        }
+
+    }
+    return res;
+}
+
+int Calculator::CalculateAdd(int num)
+{
+    int res = 0;
+    for (long i = 0; i < num; i++) {
+        int arg = 0;
+        if (sscanf_s(arg_mass[i], "%d", &arg) == 1) {
+            res += arg;
+        }
+        else {
+            errors.errors[errors.num_errors++] = -2;
+        }
+
+    }
+    return res;
 }
